@@ -1,3 +1,28 @@
+// var searchMatrix = function (matrix, target) {
+//   if (matrix.length === 0) return false;
+
+//   let row = matrix.length;
+//   let col = matrix[0].length;
+
+//   let left = 0;
+//   let right = row * col - 1;
+
+//   while (left <= right) {
+//     let mid = Math.floor((left + right) / 2);
+//     let curRow = Math.floor(mid / col);
+//     let curCol = Math.floor(mid % col);
+//     let midValue = matrix[curRow][curCol];
+
+//     if (target === midValue) return true;
+//     else if (target < midValue) {
+//       right = mid - 1;
+//     } else if (target > midValue) {
+//       left = mid + 1;
+//     }
+//   }
+//   return false;
+// };
+
 var searchMatrix = function (matrix, target) {
   if (matrix.length === 0) return false;
 
@@ -8,19 +33,17 @@ var searchMatrix = function (matrix, target) {
   let right = row * col - 1;
 
   while (left <= right) {
-    let mid = Math.floor((left + right) / 2);
-    let curRow = Math.floor(mid / col);
-    let curCol = Math.floor(mid % col);
-    let midValue = matrix[curRow][curCol];
+    let mid = Math.floor((left + right) / 2); //gives index of middle
+    let midElement = matrix[Math.floor(mid / col)][Math.floor(mid % col)]; //give you the mid element
 
-    if (target === midValue) return true;
-    else if (target < midValue) {
+    if (target === midElement) {
+      return true;
+    } else if (target < midElement) {
       right = mid - 1;
-    } else if (target > midValue) {
+    } else if (target > midElement) {
       left = mid + 1;
     }
   }
-  return false;
 };
 
 var matrix = [
@@ -29,8 +52,7 @@ var matrix = [
   [23, 30, 34, 50],
 ];
 var testSearchMatrix = () => {
-  // console.log(searchMatrix(matrix, 20));
-  console.log(searchMatrix(matrix, 100));
+  console.log(searchMatrix(matrix, 20));
 };
 testSearchMatrix();
 
